@@ -1,68 +1,73 @@
+import 'dart:core';
 
-int factorialNum(int num)
+import 'dart:ffi';
+import 'dart:io';
+
+//task1
+String reversedString (String str )
 {
-  for(int i = num ; i > 1 ; i--)
-    {
-      num = num * (i-1);
+  String cpyStr ='';
+  for(int i=str.length -1 ; i >= 0; i--) //
+  {
+    cpyStr += str[i];
+  }
+  return cpyStr;
+}
+
+//task2
+int checkVowels(String str) {
+  int count = 0;
+  List<String> vowels = ['a', 'i', 'o', 'e', 'u'];
+
+  for (int i = 0; i < str.length; i++) {
+    if (vowels.contains(str[i])) {
+      count++;
     }
-  return num;
+  }
 
+  return count;
 }
 
-bool isPrime(num number)
+//task3
+void yourCurrentAge(String name , int age )
 {
-  for(int i = 2 ; i <number ; i++)
+  int restAge = 100 - age ;
+  print("$name , you still need $restAge years to become 100");
+}
+
+
+//task4
+ List<String> reversedStatement(String str)
+{
+  List<String> arry = str.split(' ');
+  List<String> output =[];
+  for(int i = arry.length -1 ; i<= 0 ; i--)
     {
-      if(number % i == 0)
-        return false;
+      output.add(arry[i]);
     }
-  return true;
-
+  return output;
 }
 
-String numberType(num num)
-{
-  if(num%2 == 0)
-   { return "even";}
-  return "odd";
-
-}
-
-void guessNum(num guess)
-{
-  num myNum = 70;
-  if(guess<myNum)
-    print("low , my guess is 70");
- else if(guess > myNum )
-    {
-      print("high , my guess is 70");
+void draw(int squareSize) {
+  for (int w = 0; w < squareSize; w++) {
+    print(" --- " * squareSize);
+    for (int i = 0; i < squareSize + 1; i++) {
+      stdout.write('|    ');
     }
-   else
-    print("exactly my guess is 70");
-
+    stdout.write('\n');
+  }
+  print(" --- " * squareSize);
 }
 
-num maxNum(List<int> numbers)
+
+void main(List<String> arguments)
 {
-  num max =numbers[0];
-  for(int i =0 ; i <numbers.length ;i ++)
-    {
-      if(max<numbers[i])
-        max = numbers[i];
-    }
-  return max;
-
-}
-
-
-
-
-void main(List<String> arguments) {
-  int x = 5;
-  List<int> numbers = [1 ,3,6];
-  print(factorialNum(x));
-  print(isPrime(x));
-  print(numberType(x));
-  guessNum(x);
-  print(maxNum(numbers));
+  int age =21;
+  String str ='matador';
+  String str2 = 'matador is my name';
+  print(reversedString(str));
+  print(checkVowels(str));
+  yourCurrentAge(str , 31);
+  print(reversedString(str2));
+  draw(3);
 }
